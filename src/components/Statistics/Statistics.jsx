@@ -1,54 +1,30 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
+import { Counter } from './Statistics.styled';
 
-const Statistics = ({
-  state,
-  countTotalFeedback,
-  countPositiveFeedbackPercentage,
+export const Statistics = ({
+  good,
+  neutral,
+  bad,
+  total,
+  positivePercentage,
 }) => {
-  const { good, neutral, bad } = state;
   return (
     <>
-      <List aria-label="mailbox folders">
-        <ListItem>
-          <ListItemText primary={`Good: ${good}`} />
-        </ListItem>
-
-        <ListItem>
-          <ListItemText primary={`Neutral: ${neutral}`} />
-        </ListItem>
-
-        <ListItem divider>
-          <ListItemText primary={`Bad: ${bad}`} />
-        </ListItem>
-
-        <ListItem>
-          <ListItemText primary={'Total: ' + countTotalFeedback()} />
-        </ListItem>
-
-        <ListItem>
-          <ListItemText
-            primary={
-              'Positive feedback: ' + countPositiveFeedbackPercentage() + '%'
-            }
-          />
-        </ListItem>
-      </List>
+      <Counter>
+        <span>Good: {good}</span>
+        <span>Neutral: {neutral}</span>
+        <span>Bad: {bad}</span>
+        <span>Total: {total}</span>
+        <span>Positive feedback: {positivePercentage} %</span>
+      </Counter>
     </>
   );
 };
 
-Statistics.propTypes = {
-  state: PropTypes.shape({
-    good: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-  }).isRequired,
-  countTotalFeedback: PropTypes.func.isRequired,
-  countPositiveFeedbackPercentage: PropTypes.func.isRequired,
+Statistics.propType = {
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  positivePercentage: PropTypes.number.isRequired,
 };
-
-export default Statistics;

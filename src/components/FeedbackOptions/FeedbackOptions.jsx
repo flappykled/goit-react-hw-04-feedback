@@ -1,27 +1,28 @@
-import css from './FeedbackOptions.module.css';
-import React from 'react';
-import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
+import { Button } from './FeedbackOptions.styled';
 
-const FeedbackOptions = ({ state, handleButtons }) => {
+export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
-    <>
-      <div className={css.counter}>
-        {Object.keys(state).map(keyName => {
-          return <Button onClick={handleButtons}>{keyName}</Button>;
+    <Button>
+      <>
+        {options.map(ele => {
+          return (
+            <button
+              key={ele}
+              type="button"
+              name={ele}
+              onClick={() => onLeaveFeedback(ele)}
+            >
+              {ele}
+            </button>
+          );
         })}
-      </div>
-    </>
+      </>
+    </Button>
   );
 };
 
 FeedbackOptions.propTypes = {
-  handleButtons: PropTypes.func.isRequired,
-  state: PropTypes.shape({
-    good: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-  }).isRequired,
+  options: PropTypes.array.isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
 };
-
-export default FeedbackOptions;

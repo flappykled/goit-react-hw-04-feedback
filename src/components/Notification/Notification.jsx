@@ -1,17 +1,10 @@
-import List from '@mui/material/List';
-import React from 'react';
-import ListItem from '@mui/material/ListItem';
 import PropTypes from 'prop-types';
-import ListItemText from '@mui/material/ListItemText';
+import { Name } from './Notification.styled';
 
-const Notification = ({ message }) => {
+export const Notification = ({ message }) => {
   return (
     <>
-      <List aria-label="mailbox folders">
-        <ListItem>
-          <ListItemText primary={message} />
-        </ListItem>
-      </List>
+      <Name>{message}</Name>
     </>
   );
 };
@@ -19,5 +12,3 @@ const Notification = ({ message }) => {
 Notification.propTypes = {
   message: PropTypes.string.isRequired,
 };
-
-export default Notification;
